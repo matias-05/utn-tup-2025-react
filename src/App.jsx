@@ -1,53 +1,19 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
-import RecetaPage from './pages/receta'
-import ObjectsPage from './pages/objects'
-
+import RecetasListPage from './pages/RecetasListPage'
+import RecetaDetallePage from './pages/RecetaDetallePage';
+import Navbar from './components/layout/Navbar'
+import InicioPage from './pages/InicioPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <Router>
-      <div>
-        <nav style={{ 
-          padding: '20px', 
-          borderBottom: '1px solid #ccc',
-          marginBottom: '20px',
-          backgroundColor: '#f5f5f5'
-        }}>
-          <Link 
-            to="/objects" 
-            style={{ 
-              marginRight: '20px', 
-              textDecoration: 'none',
-              padding: '8px 16px',
-              backgroundColor: '#007bff',
-              color: 'white',
-              borderRadius: '4px'
-            }}
-          >
-            Objects
-          </Link>
-          <Link 
-            to="/receta"
-            style={{ 
-              textDecoration: 'none',
-              padding: '8px 16px',
-              backgroundColor: '#28a745',
-              color: 'white',
-              borderRadius: '4px'
-            }}
-          >
-            Receta
-          </Link>
-        </nav>
-        
-        <Routes>
-          <Route path="/" element={<ObjectsPage />} />
-          <Route path="/objects" element={<ObjectsPage />} />
-          <Route path="/receta" element={<RecetaPage />} />
-        </Routes>
-      </div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<InicioPage />} />
+        <Route path="/recetas" element={<RecetasListPage />} />
+        <Route path="/recetas/:id" element={<RecetaDetallePage />} />
+      </Routes>
     </Router>
-  )
+  );
 }
-
 export default App

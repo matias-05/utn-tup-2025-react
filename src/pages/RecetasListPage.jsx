@@ -1,14 +1,14 @@
+import { RecetasProvider } from '../contexts/RecetasContext'
+import RecetasList from '../components/recetas/RecetasList'
 import { useEffect, useState } from "react";
-import ListaIngredientes from "../components/receta/Lista";
-import { RecetaProvider } from "../contexts/RecetaContext";
 import { Container, Typography, Alert } from "@mui/material";
 
-function RecetaPage() {
+function RecetasListPage() {
     const [productos, setProductos] = useState([]);
     const [hasError, setError] = useState(false);
 
     return (
-        <RecetaProvider>
+        <RecetasProvider>
             <Container maxWidth="lg" sx={{ py: 4 }}>
                 <Typography 
                     variant="h3" 
@@ -17,7 +17,7 @@ function RecetaPage() {
                     align="center"
                     sx={{ mb: 4 }}
                 >
-                    Mi Receta
+                    Mis Recetas
                 </Typography>
                 
                 {hasError && (
@@ -26,10 +26,10 @@ function RecetaPage() {
                     </Alert>
                 )}
 
-                <ListaIngredientes titulo={"ingredientes"} productos={productos}/>
+                <RecetasList />
             </Container>
-        </RecetaProvider>
+        </RecetasProvider>
     )
 }
 
-export default RecetaPage;
+export default RecetasListPage
