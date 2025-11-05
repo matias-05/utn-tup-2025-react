@@ -20,6 +20,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import PeopleIcon from "@mui/icons-material/People";
+import IngredientesList from "./IngredientesList"
 
 export default function RecetaDetalle({ receta }) {
   const navigate = useNavigate();
@@ -54,7 +55,11 @@ export default function RecetaDetalle({ receta }) {
             height="400"
             image={receta.imagen}
             alt={receta.titulo}
-            sx={{ objectFit: "cover" }}
+            sx={{
+              objectFit: "cover",
+              height: { xs: 200, sm: 300, md: 400, lg: 500 }, // altura cambia según el tamaño de pantalla
+              borderRadius: 2,
+            }}
           />
         </Card>
 
@@ -98,18 +103,7 @@ export default function RecetaDetalle({ receta }) {
         <Divider sx={{ my: 3 }} />
 
         {/* Lista de ingredientes */}
-        <Typography variant="h5" fontWeight={600} gutterBottom>
-          Ingredientes
-        </Typography>
-        <List>
-          {receta.ingredientes.map((ing, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemText
-                primary={`${ing.cantidad} ${ing.unidad} de ${ing.nombre}`}
-              />
-            </ListItem>
-          ))}
-        </List>
+          <IngredientesList receta={receta}></IngredientesList>
 
         <Divider sx={{ my: 3 }} />
 
