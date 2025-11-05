@@ -10,17 +10,15 @@ import Chip from "@mui/material/Chip";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+export default function RecetaCard({ receta }) {
+    const navigate = useNavigate();
 
-export default function RecetaCard({
-  id,
-  imagen,
-  titulo,
-  tiempoPreparacion,
-  dificultad,
-  porciones,
-}) {
-  return (
+    const handleVerReceta = () => {
+      navigate(`/recetas/${receta.id}`);
+    };
+
+    return (
     <Card
       sx={{
         maxWidth: 345,
@@ -35,35 +33,35 @@ export default function RecetaCard({
       <CardMedia
         component="img"
         height="200"
-        image={imagen}
-        alt={titulo}
+        image={receta.imagen}
+        alt={receta.titulo}
         sx={{ objectFit: "cover" }}
       />
 
       {/* Contenido */}
       <CardContent>
         <Typography gutterBottom variant="h6" component="div">
-          {titulo}
+          {receta.titulo}
         </Typography>
 
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 1 }}>
           <Chip
             icon={<AccessTimeIcon />}
-            label={tiempoPreparacion}
+            label={receta.tiempoPreparacion}
             size="small"
             color="primary"
             variant="outlined"
           />
           <Chip
             icon={<SignalCellularAltIcon />}
-            label={dificultad}
+            label={receta.dificultad}
             size="small"
             color="secondary"
             variant="outlined"
           />
           <Chip
             icon={<RestaurantIcon />}
-            label={`${porciones} porciones`}
+            label={`${receta.porciones} porciones`}
             size="small"
             color="success"
             variant="outlined"
@@ -73,15 +71,15 @@ export default function RecetaCard({
 
       {/* Botón */}
       <CardActions>
-        <Link to={`/recetas/${id}`} >
             <Button        
                 size="small"
                 color="primary"
+                onClick={handleVerReceta}
                 >
-                Ver detalle
+                Ver Receta
             </Button>
-        </Link>
       </CardActions>  
     </Card>
   );
 }
+

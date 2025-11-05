@@ -1,25 +1,30 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useRecetas } from "../../contexts/RecetasContext";
 import {
   Box,
   Typography,
   Card,
   CardMedia,
-  CardContent,
-  Grid,
+  Paper,
   List,
   ListItem,
   ListItemText,
-  Button,
   Divider,
   CircularProgress,
+  Container,
+  Chip,
+  IconButton,
+  Stack,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import PeopleIcon from "@mui/icons-material/People";
 
-export default function RecetaDetalle() {
-  const { id } = useParams();
+export default function RecetaDetalle({ receta }) {
   const navigate = useNavigate();
-  const { recetas, isLoading, getRecetaById } = useRecetas();
+  const {isLoading} = useRecetas();
+  
 
   if (isLoading) {
     return (
@@ -29,97 +34,103 @@ export default function RecetaDetalle() {
     );
   }
 
-  const receta = getRecetaById(id);
 
   if (!receta) {
     return <Typography align="center">Receta no encontrada.</Typography>;
   }
 
   return (
-    <Box sx={{ maxWidth: 900, mx: "auto", mt: 4, mb: 6, px: 2 }}>
-      {/* Imagen destacada */}
-      <Card sx={{ mb: 4 }}>
-        <CardMedia
-          component="img"
-          height="400"
-          image={receta.imagen}
-          alt={receta.titulo}
-          sx={{ objectFit: "cover" }}
-        />
-      </Card>
+    <Container>
+      <Paper elevation={3} sx={{ maxWidth: 900, mx: "auto", mt: 4, mb: 6, p: 3 }}>
+        {/* Botón de volver arriba */}
+        <IconButton onClick={() => navigate("/recetas")} color="primary" sx={{ mb: 2 }}>
+          <ArrowBackIcon />
+        </IconButton>
 
-      {/* Título y descripción */}
-      <Typography variant="h4" fontWeight={700} gutterBottom>
-        {receta.titulo}
-      </Typography>
+        {/* Imagen destacada */}
+        <Card sx={{ mb: 4 }}>
+          <CardMedia
+            component="img"
+            height="400"
+            image={receta.imagen}
+            alt={receta.titulo}
+            sx={{ objectFit: "cover" }}
+          />
+        </Card>
 
-      <Typography variant="body1" color="text.secondary" paragraph>
-        {receta.descripcion}
-      </Typography>
+        {/* Título y descripción */}
+        <Typography variant="h4" fontWeight={700} gutterBottom>
+          {receta.titulo}
+        </Typography>
 
-      {/* Información general */}
-      <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={12} sm={4}>
-          <Typography variant="subtitle1">
-            ⏱️ Tiempo: {receta.tiempoPreparacion}
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Typography variant="subtitle1">
-            💪 Dificultad: {receta.dificultad}
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Typography variant="subtitle1">
-            🍽️ Porciones: {receta.porciones}
-          </Typography>
-        </Grid>
-      </Grid>
+        <Typography variant="body1" color="text.secondary" paragraph>
+          {receta.descripcion}
+        </Typography>
 
-      <Divider sx={{ my: 3 }} />
-
-      {/* Lista de ingredientes */}
-      <Typography variant="h5" fontWeight={600} gutterBottom>
-        Ingredientes
-      </Typography>
-      <List>
-        {receta.ingredientes.map((ing, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemText
-              primary={`${ing.cantidad} ${ing.unidad} de ${ing.nombre}`}
-            />
-          </ListItem>
-        ))}
-      </List>
-
-      <Divider sx={{ my: 3 }} />
-
-      {/* Proceso de preparación */}
-      <Typography variant="h5" fontWeight={600} gutterBottom>
-        Preparación
-      </Typography>
-      <List>
-        {receta.pasos.map((paso, index) => (
-          <ListItem key={index} alignItems="flex-start">
-            <ListItemText
-              primary={`Paso ${index + 1}`}
-              secondary={paso}
-              sx={{ mb: 1 }}
-            />
-          </ListItem>
-        ))}
-      </List>
-
-      {/* Botón volver */}
-      <Box textAlign="center" mt={4}>
-        <Button
-          variant="contained"
-          startIcon={<ArrowBackIcon />}
-          onClick={() => navigate("/recetas")}
+        {/* Información general con Chips */}
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+          alignItems="center"
+          sx={{ mb: 3, flexWrap: "wrap" }}
         >
-          Volver al Listado
-        </Button>
-      </Box>
-    </Box>
+          <Chip
+            icon={<AccessTimeIcon />}
+            label={`Tiempo: ${receta.tiempoPreparacion}`}
+            color="primary"
+            variant="outlined"
+          />
+          <Chip
+            icon={<FitnessCenterIcon />}
+            label={`Dificultad: ${receta.dificultad}`}
+            color="secondary"
+            variant="outlined"
+          />
+          <Chip
+            icon={<PeopleIcon />}
+            label={`Porciones: ${receta.porciones}`}
+            color="success"
+            variant="outlined"
+          />
+        </Stack>
+
+        <Divider sx={{ my: 3 }} />
+
+        {/* Lista de ingredientes */}
+        <Typography variant="h5" fontWeight={600} gutterBottom>
+          Ingredientes
+        </Typography>
+        <List>
+          {receta.ingredientes.map((ing, index) => (
+            <ListItem key={index} disablePadding>
+              <ListItemText
+                primary={`${ing.cantidad} ${ing.unidad} de ${ing.nombre}`}
+              />
+            </ListItem>
+          ))}
+        </List>
+
+        <Divider sx={{ my: 3 }} />
+
+        {/* Proceso de preparación */}
+        <Typography variant="h5" fontWeight={600} gutterBottom>
+          Preparación
+        </Typography>
+        <List>
+          {receta.pasos.map((paso, index) => (
+            <ListItem key={index} alignItems="flex-start">
+              <ListItemText
+                primary={`Paso ${index + 1}`}
+                secondary={paso}
+                sx={{ mb: 1 }}
+              />
+            </ListItem>
+          ))}
+        </List>
+
+        
+      </Paper>
+    </Container>
   );
 }
