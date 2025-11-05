@@ -23,9 +23,9 @@ import PeopleIcon from "@mui/icons-material/People";
 import IngredientesList from "./IngredientesList"
 
 export default function RecetaDetalle({ receta }) {
+
   const navigate = useNavigate();
   const {isLoading} = useRecetas();
-  
 
   if (isLoading) {
     return (
@@ -35,7 +35,6 @@ export default function RecetaDetalle({ receta }) {
     );
   }
 
-
   if (!receta) {
     return <Typography align="center">Receta no encontrada.</Typography>;
   }
@@ -43,10 +42,10 @@ export default function RecetaDetalle({ receta }) {
   return (
     <Container>
       <Paper elevation={3} sx={{ maxWidth: 900, mx: "auto", mt: 4, mb: 6, p: 3 }}>
-        {/* Botón de volver arriba */}
-        <IconButton onClick={() => navigate("/recetas")} color="primary" sx={{ mb: 2 }}>
-          <ArrowBackIcon />
-        </IconButton>
+
+        {/* Botón de volver al inicio */}
+          <IconButton onClick={() => navigate("/recetas")} color="primary" sx={{ mb: 2 }}> <ArrowBackIcon /> </IconButton>
+        {/* Botón de volver al inicio */}
 
         {/* Imagen destacada */}
         <Card sx={{ mb: 4 }}>
@@ -64,65 +63,53 @@ export default function RecetaDetalle({ receta }) {
         </Card>
 
         {/* Título y descripción */}
-        <Typography variant="h4" fontWeight={700} gutterBottom>
-          {receta.titulo}
-        </Typography>
+          <Typography variant="h4" fontWeight={700} gutterBottom> {receta.titulo} </Typography>
+          <Typography variant="body1" color="text.secondary" paragraph> {receta.descripcion} </Typography>
+        {/* Título y descripción */}
 
-        <Typography variant="body1" color="text.secondary" paragraph>
-          {receta.descripcion}
-        </Typography>
+        {/* Chips de información */}   
+          <Stack direction={{ xs: "column", sm: "row" }} 
+            spacing={2}
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+              mb: 3,
+              flexWrap: "wrap",
+              "& .MuiChip-root": {
+                width: { xs: "100%", sm: "auto" }, 
+                justifyContent: "center", 
+              },
+            }}
+          >
+            {/* Chips de tiempo */}
+            <Chip icon={<AccessTimeIcon />} label={`Tiempo: ${receta.tiempoPreparacion}`} color="primary" variant="outlined" />
 
-        {/* Información general con Chips */}
-        <Stack
-          direction="row"
-          spacing={2}
-          justifyContent="center"
-          alignItems="center"
-          sx={{ mb: 3, flexWrap: "wrap" }}
-        >
-          <Chip
-            icon={<AccessTimeIcon />}
-            label={`Tiempo: ${receta.tiempoPreparacion}`}
-            color="primary"
-            variant="outlined"
-          />
-          <Chip
-            icon={<FitnessCenterIcon />}
-            label={`Dificultad: ${receta.dificultad}`}
-            color="secondary"
-            variant="outlined"
-          />
-          <Chip
-            icon={<PeopleIcon />}
-            label={`Porciones: ${receta.porciones}`}
-            color="success"
-            variant="outlined"
-          />
-        </Stack>
+            {/* Chips de dificultad */}
+            <Chip icon={<FitnessCenterIcon />} label={`Dificultad: ${receta.dificultad}`} color="secondary" variant="outlined" />
+
+            {/* Chips porciones */}
+            <Chip icon={<PeopleIcon />} label={`Porciones: ${receta.porciones}`} color="success" variant="outlined" />
+          </Stack>
+        {/* Chips de información */}  
 
         <Divider sx={{ my: 3 }} />
 
         {/* Lista de ingredientes */}
           <IngredientesList receta={receta}></IngredientesList>
+        {/* Lista de ingredientes */}
 
         <Divider sx={{ my: 3 }} />
 
         {/* Proceso de preparación */}
-        <Typography variant="h5" fontWeight={600} gutterBottom>
-          Preparación
-        </Typography>
-        <List>
-          {receta.pasos.map((paso, index) => (
-            <ListItem key={index} alignItems="flex-start">
-              <ListItemText
-                primary={`Paso ${index + 1}`}
-                secondary={paso}
-                sx={{ mb: 1 }}
-              />
-            </ListItem>
-          ))}
-        </List>
-
+          <Typography variant="h5" fontWeight={600} gutterBottom> Preparación </Typography>
+          <List>
+            {receta.pasos.map((paso, index) => (
+              <ListItem key={index} alignItems="flex-start">
+                <ListItemText primary={`Paso ${index + 1}`} secondary={paso} sx={{ mb: 1 }} />
+              </ListItem>
+            ))}
+          </List>
+        {/* Proceso de preparación */}
         
       </Paper>
     </Container>

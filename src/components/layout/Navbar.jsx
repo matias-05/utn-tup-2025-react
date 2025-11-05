@@ -31,7 +31,8 @@ export default function Navbar() {
     <AppBar position="absolute" color="primary">
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          {/* Título / Logo */}
+
+          {/*Título Desktop*/}
           <Typography
             variant="h6"
             component={Link}
@@ -47,8 +48,9 @@ export default function Navbar() {
           >
             Recetas de Mati !
           </Typography>
+          {/*Título Desktop*/}
 
-          {/* Menú hamburguesa (para mobile) */}
+          {/* Título reducido (mobile) */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -75,6 +77,7 @@ export default function Navbar() {
               ))}
             </Menu>
           </Box>
+          {/* Título reducido (mobile) */}
 
           {/* Título reducido (mobile) */}
           <Typography
@@ -92,6 +95,7 @@ export default function Navbar() {
           >
             Recetas de Mati !
           </Typography>
+          {/* Título reducido (mobile) */}
 
           {/* Menú normal (desktop) */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -107,6 +111,8 @@ export default function Navbar() {
               </Button>
             ))}
           </Box>
+          {/* Menú normal (desktop) */}
+          
         </Toolbar>
       </Container>
     </AppBar>
