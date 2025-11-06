@@ -42,7 +42,7 @@ function RecetasList(props) {
 
       <Grid container spacing={2} justifyContent="center">
         {recetas.map((receta) => (
-          <Grid item key={receta.id}>
+          <Grid key={receta.id}>
             <RecetaCard receta={receta}/>
           </Grid>
         ))}
