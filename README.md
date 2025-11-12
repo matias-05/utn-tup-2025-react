@@ -15,31 +15,39 @@ Una aplicación React moderna construida con Vite que demuestra el uso de React 
 ```
 my-react-app/
 │
-├── public/                     # Archivos estáticos públicos
-│   └── vite.svg
+├── public/   
+│    ├── imagenes-recetas/       # Imágenes de los productos 
+│    │   ├── brownie.jpeg
+│    │   ├── ensalada-cesar.jpeg
+│    │   ├── pasta-carbonara.jpg
+│    │   ├── pollo-curry.jpeg
+│    │   ├── sopa-tomate.jpg
+│    │   └── tacos.webp             
+│    └── vite.svg                # Archivos estáticos públicos
 │
 ├── src/                        # Código fuente de la aplicación
 │   ├── assets/                 # Recursos estáticos (imágenes, iconos)
 │   │   └── react.svg
 │   │
-│   ├── components/             # Componentes reutilizables
-│   │   ├── MiBoton.jsx        # Componente de botón personalizado
-│   │   ├── objects/           # Componentes relacionados con objetos
-│   │   │   ├── ObjectsList.jsx
-│   │   │   └── SingleObject.jsx
-│   │   └── receta/            # Componentes relacionados con recetas
-│   │       └── Lista.jsx
+│   ├── components/            # Componentes reutilizables
+│   │   ├── layout/           # Carpeta de Navbar
+│   │   │   └── Navbar.jsx
+│   │   └── recetas/            # Componentes relacionados con recetas
+│   │       ├── IngredientesList.jsx
+│   │       ├── RecetaCard.jsx
+│   │       ├── RecetaDetalle.jsx
+│   │       └── RecetasList.jsx
 │   │
 │   ├── contexts/              # Contextos de React para manejo de estado
-│   │   ├── ObjectsContext.jsx
-│   │   └── RecetaContext.jsx
+│   │   └── RecetasContext.jsx
 │   │
 │   ├── data/                  # Datos estáticos
-│   │   └── productos.json
+│   │   └── recetas.json
 │   │
 │   ├── pages/                 # Componentes de páginas principales
-│   │   ├── objects.jsx
-│   │   └── receta.jsx
+│   │   ├── InicioPage.jsx
+│   │   ├── RecetaDetallePage.jsx
+│   │   └── RecetasListPage.jsx
 │   │
 │   ├── App.jsx                # Componente principal de la aplicación
 │   ├── App.css                # Estilos del componente App
@@ -48,11 +56,10 @@ my-react-app/
 │
 ├── eslint.config.js           # Configuración de ESLint
 ├── index.html                 # Plantilla HTML principal
-├── package.json               # Dependencias y scripts del proyecto
 ├── package-lock.json          # Lockfile de dependencias
-├── vite.config.js             # Configuración de Vite
-├── GUIA-MATERIAL-UI.md        # Guía de Material UI
-└── GUIA-REACT-ROUTER-DOM.md   # Guía de React Router DOM
+├── package.json               # Dependencias y scripts del proyecto
+├── README.md                  # Readme del proyecto
+└── vite.config.js             # Configuración de Vite
 ```
 
 ## 📦 Instalación y Configuración
