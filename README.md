@@ -101,19 +101,17 @@ La aplicación se abrirá en `http://localhost:5173`
 
 ### Enrutamiento
 La aplicación utiliza React Router DOM para la navegación entre páginas:
-- **Página Principal (/)**: Redirige a la página de Objects
-- **Objects (/objects)**: Muestra una lista de objetos con funcionalidad CRUD
-- **Receta (/receta)**: Muestra componentes relacionados con recetas
+- **Página Principal (/)**: Redirige a la página principal con una bienvenida al usuario
+- **Receta (/recetas)**: Muestra todas las recetas en cards
+- **Receta (/recetas:id)**: Muestra la receta seleccionada con mas detalle
 
 ### Manejo de Estado
 - **Context API**: Se utiliza para manejar el estado global
-- **ObjectsContext**: Gestiona el estado de los objetos
-- **RecetaContext**: Gestiona el estado de las recetas
+- **RecetasContext**: Gestiona el estado de las recetas
 
 ### Componentes
 - **Componentes organizados por funcionalidad** en carpetas separadas
 - **Material UI** para componentes de interfaz consistentes
-- **Componentes reutilizables** como `MiBoton.jsx`
 
 ## 🎨 Estilos
 
