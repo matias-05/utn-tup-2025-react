@@ -1,6 +1,7 @@
 # Mi Aplicación React
 
 Una aplicación React moderna construida con Vite que demuestra el uso de React Router, Material UI, Context API y componentes organizados.
+<img src="/public/imagen-readme.png">
 
 ## 🚀 Tecnologías Utilizadas
 
@@ -22,7 +23,8 @@ my-react-app/
 │    │   ├── pasta-carbonara.jpg
 │    │   ├── pollo-curry.jpeg
 │    │   ├── sopa-tomate.jpg
-│    │   └── tacos.webp             
+│    │   └── tacos.webp
+│    ├── imagen-readme.png        
 │    └── vite.svg                # Archivos estáticos públicos
 │
 ├── src/                        # Código fuente de la aplicación
@@ -143,21 +145,3 @@ npm run build
 
 Los archivos construidos se generarán en la carpeta `dist/` y estarán listos para ser desplegados en cualquier servidor web estático.
 
-## 📚 Recursos Adicionales
-
-- [Guía de Material UI](./GUIA-MATERIAL-UI.md)
-- [Guía de React Router DOM](./GUIA-REACT-ROUTER-DOM.md)
-- [Documentación de Vite](https://vitejs.dev/)
-- [Documentación de React](https://react.dev/)
-
-## 🤝 Contribución
-
-1. Fork el proyecto
-2. Crea una rama para tu funcionalidad (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
----
-
-⚡ **Desarrollado con Vite + React para un desarrollo rápido y eficiente**
